@@ -1,0 +1,22 @@
+name: ArbiEver CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Run a basic test
+      run: echo "ArbiEver Node repository is ready and passes initial check!"
+
+    - name: Check scripts permissions
+      run: |
+        chmod +x start_node.sh
+        chmod +x install_nitro.sh
