@@ -1,0 +1,17 @@
+[Unit]
+Description=ArbiEver DAC daserver
+After=network.target arbiever-proxy.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/ArbiEver
+ExecStart=/root/ArbiEver/daserver --conf.file /root/ArbiEver/das_config.json
+Restart=on-failure
+RestartSec=5
+StandardOutput=append:/root/ArbiEver/das.log
+StandardError=append:/root/ArbiEver/das.log
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target

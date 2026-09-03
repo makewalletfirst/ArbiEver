@@ -1,0 +1,41 @@
+diff --git a/arbnode/dataposter/data_poster.go b/arbnode/dataposter/data_poster.go
+index 31b9a98..0049eff 100644
+--- a/arbnode/dataposter/data_poster.go
++++ b/arbnode/dataposter/data_poster.go
+@@ -790,6 +790,9 @@ func (p *DataPoster) PostTransaction(ctx context.Context, dataCreatedAt time.Tim
+ 			return nil, err
+ 		}
+ 	} else {
++		// EtherEver patch: the parent chain miner does not include EIP-1559 type-2
++		// transactions in blocks, so force legacy tx type. deprecatedData is still
++		// populated for storage layer compat (RBF replacement uses both).
+ 		deprecatedData = types.DynamicFeeTx{
+ 			Nonce:      nonce,
+ 			GasFeeCap:  feeCap,
+@@ -801,7 +804,14 @@ func (p *DataPoster) PostTransaction(ctx context.Context, dataCreatedAt time.Tim
+ 			AccessList: accessList,
+ 			ChainID:    p.parentChainID,
+ 		}
+-		inner = &deprecatedData
++		inner = &types.LegacyTx{
++			Nonce:    nonce,
++			GasPrice: feeCap,
++			Gas:      gasLimit,
++			To:       &to,
++			Value:    value,
++			Data:     calldata,
++		}
+ 	}
+ 	fullTx, err := p.signer(ctx, p.Sender(), types.NewTx(inner))
+ 	if err != nil {
+@@ -929,6 +939,10 @@ func (p *DataPoster) sendTx(ctx context.Context, prevTx *storage.QueuedTransacti
+ 
+ func updateTxDataGasCaps(data types.TxData, newFeeCap, newTipCap, newBlobFeeCap *big.Int) error {
+ 	switch data := data.(type) {
++	case *types.LegacyTx:
++		// EtherEver patch: legacy tx uses single GasPrice (set to feeCap)
++		data.GasPrice = newFeeCap
++		return nil
+ 	case *types.DynamicFeeTx:
+ 		data.GasFeeCap = newFeeCap
+ 		data.GasTipCap = newTipCap

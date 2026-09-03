@@ -1,0 +1,18 @@
+[Unit]
+Description=ArbiEver Nitro L2 Sequencer
+After=network.target arbiever-proxy.service arbiever-daserver.service
+Requires=arbiever-proxy.service arbiever-daserver.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/ArbiEver
+ExecStart=/root/ArbiEver/nitro --conf.file /root/ArbiEver/node_config.json
+Restart=on-failure
+RestartSec=10
+StandardOutput=append:/root/ArbiEver/nitro.log
+StandardError=append:/root/ArbiEver/nitro.log
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,128 @@
+{
+  "parent-chain": {
+    "connection": {
+      "url": "http://127.0.0.1:8547"
+    }
+  },
+  "chain": {
+    "id": 580511,
+    "name": "ArbiEver",
+    "info-files": [
+      "/root/ArbiEver/chain-info.json"
+    ]
+  },
+  "execution": {
+    "sequencer": {
+      "enable": true,
+      "max-block-speed": "250ms"
+    },
+    "forwarding-target": "",
+    "parent-chain-reader": {
+      "enable": true,
+      "use-finality-data": false,
+      "poll-only": false,
+      "poll-interval": "5s"
+    }
+  },
+  "node": {
+    "sequencer": true,
+    "delayed-sequencer": {
+      "enable": true,
+      "use-merge-finality": false,
+      "finalize-distance": 1
+    },
+    "parent-chain-reader": {
+      "enable": true,
+      "use-finality-data": false,
+      "poll-only": false,
+      "poll-interval": "5s"
+    },
+    "staker": {
+      "enable": true,
+      "strategy": "MakeNodes",
+      "make-assertion-interval": "5m",
+      "use-smart-contract-wallet": true,
+      "contract-wallet-address": "0xf7Ce8D84B8b9BAfa70E44F2087BA682fE88D0500",
+      "parent-chain-wallet": {
+        "private-key": "<VALIDATOR_PK>"
+      },
+      "dangerous": {
+        "ignore-rollup-wasm-module-root": true,
+        "without-block-validator": true
+      },
+      "data-poster": {
+        "max-mempool-transactions": 5,
+        "max-mempool-weight": 5
+      }
+    },
+    "batch-poster": {
+      "enable": true,
+      "max-delay": "30s",
+      "max-size": 100000,
+      "parent-chain-wallet": {
+        "private-key": "<BATCH_POSTER_PK>"
+      },
+      "data-poster": {
+        "max-mempool-transactions": 18
+      }
+    },
+    "data-availability": {
+      "enable": true,
+      "parent-chain-node-url": "http://127.0.0.1:8547",
+      "sequencer-inbox-address": "0xA5CD2DB4022595Ea6BE7259d6AC7061dA54930f1",
+      "rest-aggregator": {
+        "enable": true,
+        "urls": [
+          "http://127.0.0.1:9877"
+        ]
+      },
+      "rpc-aggregator": {
+        "enable": true,
+        "assumed-honest": 1,
+        "backends": "[{\"url\": \"http://127.0.0.1:9876\", \"pubkey\": \"YAvtYHlov8gImLXsFCTARf1tIHRoiSXOOimmZZS3n9kNm3y8j4BS/0V8C/IAMUY+7wQjDwtQqyAnvjRwRw1/GxFhbGwESYSed2yXTPubSUJDgwSWtx0f8a+vm7t//XcsZgRHJ7xjqVeqDsDLGlqbm89X5LObdx6do4t1aHc+plgUhaYvu69hUylqrT9HS72JphTvq7qMKPad9jZBMQHgty1MJBrCOjhPCkwsYnllneC21qrcVtfO+1gAkwNpYK2ZOQTyKwd1zHzdqJIlgBFOwv8BUIQeJxMItkH9H6WXWS22Hy+L73UpGC0eLtv4YfWvYAN6fV1cMCm1sn8ERnaW4vtiuB+78jXpXA9JffR8q8rMer0OD6dERaz2ONtFMq+wug==\", \"signermask\": 1}]"
+      }
+    },
+    "dangerous": {
+      "no-l1-listener": false,
+      "disable-blob-reader": true,
+      "no-sequencer-coordinator": true
+    },
+    "block-validator": {
+      "enable": false
+    }
+  },
+  "http": {
+    "addr": "0.0.0.0",
+    "port": 8449,
+    "vhosts": [
+      "*"
+    ],
+    "corsdomain": [
+      "*"
+    ],
+    "api": [
+      "net",
+      "web3",
+      "eth",
+      "arb",
+      "debug"
+    ]
+  },
+  "ws": {
+    "addr": "0.0.0.0",
+    "port": 8450,
+    "origins": [
+      "*"
+    ],
+    "api": [
+      "net",
+      "web3",
+      "eth",
+      "arb"
+    ]
+  },
+  "persistent": {
+    "chain": "/root/ArbiEver/l2data"
+  },
+  "log-level": "info"
+}
