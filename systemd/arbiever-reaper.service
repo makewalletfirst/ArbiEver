@@ -1,0 +1,17 @@
+[Unit]
+Description=ArbiEver type-2 reaper (replaces stuck Nitro EIP-1559 txs with legacy)
+After=network.target arbiever-nitro.service
+Requires=arbiever-nitro.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/ArbiEver
+ExecStart=/usr/bin/python3 -u /root/ArbiEver/reaper.py
+Restart=on-failure
+RestartSec=10
+StandardOutput=append:/root/ArbiEver/reaper.log
+StandardError=append:/root/ArbiEver/reaper.log
+
+[Install]
+WantedBy=multi-user.target

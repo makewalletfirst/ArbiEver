@@ -1,0 +1,45 @@
+[
+  {
+    "chain-name": "ArbiEver",
+    "chain-id": 580511,
+    "parent-chain-id": 58051,
+    "parent-chain-is-arbitrum": false,
+    "chain-config": {
+      "chainId": 580511,
+      "homesteadBlock": 0,
+      "daoForkBlock": null,
+      "daoForkSupport": true,
+      "eip150Block": 0,
+      "eip150Hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "eip155Block": 0,
+      "eip158Block": 0,
+      "byzantiumBlock": 0,
+      "constantinopleBlock": 0,
+      "petersburgBlock": 0,
+      "istanbulBlock": 0,
+      "muirGlacierBlock": 0,
+      "berlinBlock": 0,
+      "londonBlock": 0,
+      "clique": { "period": 0, "epoch": 0 },
+      "arbitrum": {
+        "EnableArbOS": true,
+        "AllowDebugPrecompiles": true,
+        "DataAvailabilityCommittee": true,
+        "InitialArbOSVersion": 32,
+        "InitialChainOwner": "0x43C17Ac4857733bC03A6B15b05e4Ff1209bC0BFd",
+        "GenesisBlockNum": 0
+      }
+    },
+    "rollup": {
+      "bridge": "0x5FCD4ac605bF3957f463EbeB79c9Bc0056eDC63D",
+      "inbox": "0x76b3772769cDD09Fb6A33e5f65fd13256808fc08",
+      "sequencer-inbox": "0xA5CD2DB4022595Ea6BE7259d6AC7061dA54930f1",
+      "deployed-at": 2972577,
+      "rollup": "0x70CA25CeaF5d40cf0ce7E21f540f07817135E977",
+      "native-token": "0x0000000000000000000000000000000000000000",
+      "upgrade-executor": "0xbf3beDF7cDf0E3cC2a29ee935f37822338272aA5",
+      "validator-utils": "0x7F0A94E9bBdE80f682e6C9Cec5b72161Eb7D617c",
+      "validator-wallet-creator": "0x53Cf6fC7E3D3Ee11cd096CD8AAa703Ee8E3E3b34"
+    }
+  }
+]

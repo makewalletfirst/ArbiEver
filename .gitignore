@@ -1,0 +1,42 @@
+# Secrets — NEVER commit
+CREDENTIALS.md
+keys/
+das-keys/
+
+# Large data / runtime state
+l2data/
+das-data/
+
+# Large binaries (extract from Docker each time)
+nitro
+daserver
+datool
+go1.21.0.linux-amd64.tar.gz
+
+# Logs
+*.log
+phase*_*.log
+phase*_*_v*.log
+
+# Old archive (preserved on disk but not pushed)
+_archive_260426/
+
+# Build artifacts
+nitro-contracts/cache/
+nitro-contracts/forge-cache/
+nitro-contracts/out/
+nitro-contracts/build/
+nitro-contracts/node_modules/
+nitro-contracts/typechain-types/
+
+# Temp
+phase3_*.log
+phase3_*.json
+*.tmp
+node_config.json
+nitro.backup-*
+
+# Ignore all markdown files recursively except the main README.md
+**/*.md
+!/README.md
+

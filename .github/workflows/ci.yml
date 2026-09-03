@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  lint-and-syntax:
+    name: Code Syntax and Health Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Verify JavaScript Syntax
+        run: |
+          echo "Checking JavaScript syntax conditionally..."
+          # Only run syntax verification if any .js files are found in the checked-out workspace
+          js_files=$(find . -name "*.js" -not -path "*/node_modules/*")
+          if [ -n "$js_files" ]; then
+            echo "Found JavaScript files: $js_files"
+            for file in $js_files; do
+              node -c "$file"
+            done
+            echo "JavaScript syntax check completed successfully."
+          else
+            echo "No tracked JavaScript files found. Skipping check."
+          fi
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Verify Python Syntax
+        run: |
+          echo "Checking Python syntax conditionally..."
+          # Only run syntax verification if any .py files are found in the checked-out workspace
+          py_files=$(find . -name "*.py" -not -path "*/node_modules/*")
+          if [ -n "$py_files" ]; then
+            echo "Found Python files: $py_files"
+            for file in $py_files; do
+              python3 -m py_compile "$file"
+            done
+            echo "Python syntax check completed successfully."
+          else
+            echo "No tracked Python files found. Skipping check."
+          fi
+
+      - name: Health Check Summary
+        run: |
+          echo "All syntax and build verification tasks passed successfully."

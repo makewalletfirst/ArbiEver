@@ -1,0 +1,16 @@
+[Unit]
+Description=ArbiEver L1 baseFee proxy for Nitro
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/ArbiEver
+ExecStart=/usr/bin/python3 -u /root/ArbiEver/l1_proxy.py 8547
+Restart=on-failure
+RestartSec=5
+StandardOutput=append:/root/ArbiEver/l1_proxy.log
+StandardError=append:/root/ArbiEver/l1_proxy.log
+
+[Install]
+WantedBy=multi-user.target

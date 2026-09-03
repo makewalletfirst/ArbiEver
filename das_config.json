@@ -1,0 +1,24 @@
+{
+  "enable-rpc": true,
+  "rpc-addr": "127.0.0.1",
+  "rpc-port": 9876,
+  "enable-rest": true,
+  "rest-addr": "127.0.0.1",
+  "rest-port": 9877,
+  "data-availability": {
+    "enable": true,
+    "sequencer-inbox-address": "0xA5CD2DB4022595Ea6BE7259d6AC7061dA54930f1",
+    "parent-chain-node-url": "https://rpc-ether.ever-chain.xyz",
+    "key": {
+      "key-dir": "/root/ArbiEver/das-keys"
+    },
+    "local-file-storage": {
+      "enable": true,
+      "data-dir": "/root/ArbiEver/das-data"
+    },
+    "local-cache": {
+      "enable": true
+    }
+  },
+  "log-level": "info"
+}

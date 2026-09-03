@@ -1,0 +1,13 @@
+diff --git a/Dockerfile b/Dockerfile
+index 9138ed3..4195959 100644
+--- a/Dockerfile
++++ b/Dockerfile
+@@ -99,7 +99,7 @@ WORKDIR /workspace
+ RUN export DEBIAN_FRONTEND=noninteractive && \
+     apt-get update && \
+     apt-get install -y make clang wabt && \
+-    cargo install --force cbindgen
++    cargo install --force --locked --version 0.27.0 cbindgen
+ COPY arbitrator/Cargo.* arbitrator/
+ COPY ./Makefile ./
+ COPY arbitrator/arbutil arbitrator/arbutil
